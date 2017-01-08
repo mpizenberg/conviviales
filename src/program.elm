@@ -66,9 +66,15 @@ type alias TennisLevel =
     }
 
 
+type GroupAssignment
+    = GroupManual Int
+    | GroupAuto
+
+
 type alias Player =
     { contact : Contact
     , level : TennisLevel
+    , groupAssignment : GroupAssignment
     }
 
 
@@ -103,40 +109,56 @@ initialPlayers =
           , Player
                 (Contact "Christophe" "Pizenberg" 55 Male "06********" "chris@gmail.com")
                 (TennisLevel Rank_30_1 Rank_30)
+                (GroupAuto)
           )
         , ( 1
           , Player
                 (Contact "Youna" "Pizenberg" 47 Female "06********" "youna@gmail.com")
                 (TennisLevel NC Rank_30_3)
+                (GroupAuto)
           )
         , ( 2
           , Player
                 (Contact "Matthieu" "Pizenberg" 25 Male "06********" "matt@gmail.com")
                 (TennisLevel NC Rank_30_1)
+                (GroupAuto)
           )
         , ( 3
           , Player
                 (Contact "Quentin" "Pizenberg" 22 Male "06********" "quentin@gmail.com")
                 (TennisLevel NC Rank_30_1)
+                (GroupAuto)
           )
         , ( 4
           , Player
                 (Contact "Marine" "Pizenberg" 20 Female "06********" "marine@gmail.com")
                 (TennisLevel NC Rank_30_4)
+                (GroupAuto)
           )
         ]
 
 
 initialGroups : Array (List Int)
 initialGroups =
-    Array.fromList []
+    Array.fromList
+        [ [ 0, 2, 3 ]
+        , [ 1, 4 ]
+        ]
+
+
+initialGames : List Game
+initialGames =
+    [ Game 0 ( 0, 2 ) (1 * Time.hour) (Abandon 1 ( 3, 4 ))
+    , Game 0 ( 0, 3 ) (2 * Time.hour) (Ended ( 1, 12 ))
+    , Game 1 ( 1, 4 ) (1 * Time.hour) (Ended ( 5, 5 ))
+    ]
 
 
 initialModel : Model
 initialModel =
     { players = initialPlayers
     , groups = initialGroups
-    , games = []
+    , games = initialGames
     }
 
 
