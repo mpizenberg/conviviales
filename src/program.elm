@@ -67,8 +67,8 @@ type alias TennisLevel =
 
 
 type alias Player =
-    { level : TennisLevel
-    , contact : Contact
+    { contact : Contact
+    , level : TennisLevel
     }
 
 
@@ -98,7 +98,33 @@ type alias Model =
 
 initialPlayers : Dict Int Player
 initialPlayers =
-    Dict.fromList []
+    Dict.fromList
+        [ ( 0
+          , Player
+                (Contact "Christophe" "Pizenberg" 55 Male "06********" "chris@gmail.com")
+                (TennisLevel Rank_30_1 Rank_30)
+          )
+        , ( 1
+          , Player
+                (Contact "Youna" "Pizenberg" 47 Female "06********" "youna@gmail.com")
+                (TennisLevel NC Rank_30_3)
+          )
+        , ( 2
+          , Player
+                (Contact "Matthieu" "Pizenberg" 25 Male "06********" "matt@gmail.com")
+                (TennisLevel NC Rank_30_1)
+          )
+        , ( 3
+          , Player
+                (Contact "Quentin" "Pizenberg" 22 Male "06********" "quentin@gmail.com")
+                (TennisLevel NC Rank_30_1)
+          )
+        , ( 4
+          , Player
+                (Contact "Marine" "Pizenberg" 20 Female "06********" "marine@gmail.com")
+                (TennisLevel NC Rank_30_4)
+          )
+        ]
 
 
 initialGroups : Array (List Int)
